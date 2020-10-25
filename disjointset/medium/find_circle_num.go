@@ -29,13 +29,15 @@ package medium
 func FindCircleNum(M [][]int) int {
 	// 生成根节点记录表
 	parent := make([]int, len(M))
+	rank := make([]int,len(M))
 	for i := range parent{
 		parent[i] = -1
+		rank[i] = 0
 	}
 	for i, row := range M{
 		for j ,col := range row{
 			if col == 1 && i != j {
-				circleNumUnion(parent, i, j)
+				circleNumUnion(parent, i, j, rank)
 			}
 		}
 	}
@@ -58,13 +60,22 @@ func circleNumFind(parent []int, i int) int {
 }
 
 // 合并
-func circleNumUnion(parent []int, x int, y int){
+func circleNumUnion(parent []int, x int, y int, rank []int){
 	// 查找x的根
 	xSet := circleNumFind(parent, x)
 	// 查找y的根
 	ySet := circleNumFind(parent, y)
 	// 如果x的根不等于y的根合并，否则说明属于同一颗树，不需要合并
-	if xSet != ySet {
+	if xSet == ySet {
+		return
+	}
+
+	if rank[xSet] > rank[ySet] {
+		parent[ySet] = xSet
+	} else if rank[ySet] > rank[xSet]{
 		parent[xSet] = ySet
+	} else {
+		parent[xSet] = ySet
+		rank[ySet] ++
 	}
 }
