@@ -1,5 +1,7 @@
 package medium
 
+import "fmt"
+
 /**
 给定一个由表示变量之间关系的字符串方程组成的数组，每个字符串方程 equations[i] 的长度为 4，并采用两种不同的形式之一："a==b" 或 "a!=b"。在这里，a 和 b 是小写字母（不一定不同），表示单字母变量名。
 
@@ -43,6 +45,7 @@ func EquationsPossible(equations []string) bool {
 		nodeA := int(item[0]) - int('a')
 		nodeB := int(item[3]) - int('a')
 		Union_EquationsPossible(nodeA, nodeB, parent)
+		fmt.Println(parent)
 	}
 	for _, item := range equations{
 		if item[1] == '=' {
@@ -57,6 +60,7 @@ func EquationsPossible(equations []string) bool {
 	return true
 }
 
+//  隔代压缩
 func findRoot_EquationsPossible(parent []int, index int) int {
 	for parent[index] != index {
 		parent[index] = parent[parent[index]]
@@ -65,6 +69,7 @@ func findRoot_EquationsPossible(parent []int, index int) int {
 	return index
 }
 
+// 合并
 func Union_EquationsPossible(x, y int, parent []int) {
 	parent[findRoot_EquationsPossible(parent, x)] = findRoot_EquationsPossible(parent, y)
 }

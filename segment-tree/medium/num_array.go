@@ -5,6 +5,9 @@ type NumArray struct {
 	tree []int
 }
 
+/**
+线段树
+ */
 func intPow(x, y int) int {
 	res := x
 	for i := 1; i < y; i++ {
@@ -63,13 +66,13 @@ func (this *NumArray) Update(i int, val int) {
 	update(&this.tree, 0, 0, len(this.arr)-1, val, i)
 }
 
-func query(tree *[]int, node int, start, end int, L, R int) int {
+func query(tree []int, node int, start, end int, L, R int) int {
 	if L > end || R < start {
 		return 0
 	} else if R >= end && L <= start {
-		return (*tree)[node]
+		return tree[node]
 	} else if start == end {
-		return (*tree)[node]
+		return tree[node]
 	}else {
 		mid := (start + end) / 2
 		nodeL := node*2 + 1
@@ -81,5 +84,5 @@ func query(tree *[]int, node int, start, end int, L, R int) int {
 }
 
 func (this *NumArray) SumRange(i int, j int) int {
-	return query(&this.tree, 0, 0, len(this.arr)-1, i, j)
+	return query(this.tree, 0, 0, len(this.arr)-1, i, j)
 }
