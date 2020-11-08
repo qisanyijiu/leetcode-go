@@ -12,7 +12,7 @@ import "strconv"
 3.如果 n 同时是3和5的倍数，输出 “FizzBuzz”。
 
  */
-func fizzBuzz(n int) []string {
+func FizzBuzz(n int) []string {
 	var rst []string
 	for i := 1; i < n+1; i++ {
 		if i%3 == 0 && i%5 == 0 {
