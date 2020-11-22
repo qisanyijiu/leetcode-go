@@ -10,7 +10,7 @@ func TestIsPalindrome(t *testing.T) {
 			Next: nil,
 		},
 	}
-	if isPalindrome(l){
+	if IsPalindrome(l){
 		t.Fail()
 	}
 	l = &ListNode{
@@ -26,7 +26,7 @@ func TestIsPalindrome(t *testing.T) {
 			},
 		},
 	}
-	if !isPalindrome(l){
+	if !IsPalindrome(l){
 		t.Fail()
 	}
 }

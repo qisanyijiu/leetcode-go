@@ -49,8 +49,6 @@ func partition(nums []int, start, end int) int {
 			nums[height] = nums[low]
 		}
 	}
-
 	nums[low] = temp
-
 	return low
 }
