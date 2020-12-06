@@ -26,3 +26,11 @@ func TestKthSmallest(t *testing.T) {
 		}
 	}
 }
+
+func TestSlice(t *testing.T) {
+	a := []int{1,2,3,4,5}
+	b := a[1:3]
+	b[1] = 10
+	t.Log(a)
+	t.Log(b)
+}

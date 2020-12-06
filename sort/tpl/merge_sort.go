@@ -24,8 +24,8 @@ func mergeSort(nums []int, start, end int) {
 
 func merge(nums []int, start, mid, end int) {
 	var temp []int
-	i, j, k := start, 0, mid+1
-	for ; i <= mid && k <= end; j++ {
+	i, k := start, mid+1
+	for i <= mid && k <= end {
 		if nums[i] < nums[k] {
 			temp = append(temp, nums[i])
 			i++

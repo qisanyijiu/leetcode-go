@@ -34,9 +34,11 @@ func partition(nums []int, start, end int) int {
 	height := end
 
 	for low < height {
+
 		for low < height && temp < nums[height] {
 			height--
 		}
+
 		if low < height {
 			nums[low] = nums[height]
 		}
