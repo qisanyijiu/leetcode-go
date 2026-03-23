@@ -11,46 +11,35 @@ i==j时分区完成，否则转2。
 */
 
 func QuickSort(nums []int) {
-	length := len(nums)
-	if length <= 1 {
-		return
-	}
-	quickSort(nums, 0, length - 1)
+	quickSort(nums)
 }
 
-func quickSort(nums []int, start, end int) {
+func quickSort(nums []int) {
+	start, end := 0, len(nums)-1
 	if start >= end {
 		return
 	}
-
-	mid := partition(nums, start, end)
-	quickSort(nums, start, mid)
-	quickSort(nums, mid+1, end)
+	quickSortHelper(nums, start, end)
 }
 
-func partition(nums []int, start, end int) int {
-	temp := nums[start]
-	low := start
-	height := end
-
-	for low < height {
-
-		for low < height && temp < nums[height] {
-			height--
-		}
-
-		if low < height {
-			nums[low] = nums[height]
-		}
-
-		for low < height && temp > nums[low] {
-			low++
-		}
-
-		if low < height {
-			nums[height] = nums[low]
+func partition(nums []int, left, right int) int {
+	pivot := nums[right]
+	i := left
+	for j := left; j < right; j++ {
+		if nums[j] < pivot {
+			nums[i], nums[j] = nums[j], nums[i]
+			i++
 		}
 	}
-	nums[low] = temp
-	return low
+	nums[i], nums[right] = nums[right], nums[i]
+	return i
+}
+
+func quickSortHelper(nums []int, left, right int) {
+	if left >= right {
+		return
+	}
+	pivotIndex := partition(nums, left, right)
+	quickSortHelper(nums, left, pivotIndex-1)
+	quickSortHelper(nums, pivotIndex+1, right)
 }
