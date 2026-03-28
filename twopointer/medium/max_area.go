@@ -1,10 +1,11 @@
 package medium
 
 import (
-	"leetcode/utils"
+	"leetcode-go/utils"
 )
 
-/**
+/*
+*
 11. 盛最多水的容器
 
 https://leetcode-cn.com/problems/container-with-most-water/
@@ -29,7 +30,7 @@ https://leetcode-cn.com/problems/container-with-most-water/
 
 输入：height = [1,2,1]
 输出：2
- */
+*/
 func MaxArea(height []int) int {
 	var left, right = 0, len(height) - 1
 	var ans = 0
@@ -39,9 +40,9 @@ func MaxArea(height []int) int {
 			ans = tmp
 		}
 		if height[left] < height[right] {
-			left ++
-		}else{
-			right --
+			left++
+		} else {
+			right--
 		}
 	}
 	return ans

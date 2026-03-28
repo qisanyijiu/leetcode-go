@@ -13,15 +13,35 @@ package tpl
 一边比较一边移动
 */
 
+//func InsertionSort(nums []int) {
+//	length := len(nums)
+//	if length <= 1 {
+//		return
+//	}
+//	for i := 1 ; i < length; i ++ {
+//		value := nums[i]
+//		j := i - 1
+//		for ; j >= 0; j -- {
+//			if nums[j] > value {
+//				nums[j+1] = nums[j]
+//			} else {
+//				break
+//			}
+//		}
+//		nums[j+1] = value
+//	}
+//
+//}
+
 func InsertionSort(nums []int) {
 	length := len(nums)
 	if length <= 1 {
 		return
 	}
-	for i := 1 ; i < length; i ++ {
+	for i := 1; i < length; i++ {
 		value := nums[i]
 		j := i - 1
-		for ; j >= 0; j -- {
+		for ; j > 0; j-- {
 			if nums[j] > value {
 				nums[j+1] = nums[j]
 			} else {
@@ -30,5 +50,4 @@ func InsertionSort(nums []int) {
 		}
 		nums[j+1] = value
 	}
-
 }

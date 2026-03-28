@@ -1,6 +1,7 @@
 package tpl
 
-/**
+/*
+*
 冒泡排序
 
 冒泡排序是比较相邻两数的大小来完成排序的。
@@ -9,26 +10,17 @@ package tpl
 以升序排序为例，每趟排序完成之后，比较边界中的最大值就沉入底部，比较边界就向前移动一个位置。
 所以，第二趟排序开始时，比较边界是[0,n-2]。
 对于长度为n的序列，最多需要n趟完成排序，所以冒泡排序就由两层循环构成，最外层循环用于控制排序的趟数，最内层循环用于比较相邻数字的大小并在本趟排序完成时更新比较边界。
- */
+*/
 func BubbleSort(nums []int) {
 	length := len(nums)
 	if length <= 1 {
 		return
 	}
 	for i := 0; i < length; i++ {
-		// 提前退出标志
-		flag := false
 		for j := 0; j < length-i-1; j++ {
 			if nums[j] > nums[j+1] {
 				nums[j], nums[j+1] = nums[j+1], nums[j]
-				//此次冒泡有数据交换
-				flag = true
 			}
-		}
-		// 如果没有交换数据，提前退出
-		if !flag {
-			break
 		}
 	}
 }
-

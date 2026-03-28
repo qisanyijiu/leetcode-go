@@ -11,10 +11,6 @@ i==j时分区完成，否则转2。
 */
 
 func QuickSort(nums []int) {
-	quickSort(nums)
-}
-
-func quickSort(nums []int) {
 	start, end := 0, len(nums)-1
 	if start >= end {
 		return
@@ -23,6 +19,9 @@ func quickSort(nums []int) {
 }
 
 func partition(nums []int, left, right int) int {
+	if len(nums) < 2 {
+		return right
+	}
 	pivot := nums[right]
 	i := left
 	for j := left; j < right; j++ {
