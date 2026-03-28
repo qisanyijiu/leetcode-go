@@ -1,6 +1,7 @@
 package medium
 
-/**
+/*
+*
 5.最长回文子串
 https://leetcode-cn.com/problems/longest-palindromic-substring/
 
@@ -25,20 +26,20 @@ func LongestPalindromeDP(s string) string {
 	var length = len(s)
 	var res = ""
 	//初始化dp
-	var dp = make([][]int, length)
-	for i := 0; i < length; i ++ {
-		dp[i] = make([]int, length)
+	var dp = make([][]bool, length)
+	for i := 0; i < length; i++ {
+		dp[i] = make([]bool, length)
 	}
 	for l := 0; l < length; l++ {
 		for i := 0; i+l < length; i++ {
 			j := i + l
 			if l == 0 {
 				// 如果长度为1，必定为会文串
-				dp[i][j] = 1
+				dp[i][j] = true
 			} else if l == 1 {
 				// 长度为2，如果开始和结束相等，则为回文串
 				if s[i] == s[j] {
-					dp[i][j] = 1
+					dp[i][j] = true
 				}
 			} else {
 				// 如果长度大于2，则之前相等，现在也相等
@@ -46,7 +47,7 @@ func LongestPalindromeDP(s string) string {
 					dp[i][j] = dp[i+1][j-1]
 				}
 			}
-			if dp[i][j] > 0 && l+1 > len(res) {
+			if dp[i][j] && l+1 > len(res) {
 				res = s[i : i+l+1]
 			}
 		}
@@ -61,20 +62,25 @@ func LongestPalindromeMID(s string) string {
 	}
 	start, end := 0, 0
 	for i := 0; i < len(s); i++ {
+		if len(s)-i < end-start {
+			break
+		}
 		left1, right1 := expandAroundCenter(s, i, i)
-		left2, right2 := expandAroundCenter(s, i, i + 1)
-		if right1 - left1 > end - start {
+		left2, right2 := expandAroundCenter(s, i, i+1)
+		if right1-left1 > end-start {
 			start, end = left1, right1
 		}
-		if right2 - left2 > end - start {
+		if right2-left2 > end-start {
 			start, end = left2, right2
 		}
 	}
-	return s[start:end+1]
+	return s[start : end+1]
 }
 
 func expandAroundCenter(s string, left, right int) (int, int) {
-	for ; left >= 0 && right < len(s) && s[left] == s[right]; left, right = left-1 , right+1 { }
+	for ; left >= 0 && right < len(s) && s[left] == s[right]; left, right = left-1, right+1 {
+	}
+	// 跳出循环时，s[left] != s[right], 回溯一步
 	return left + 1, right - 1
 }
 
