@@ -10,35 +10,71 @@ package tpl
 i==j时分区完成，否则转2。
 */
 
-func QuickSort(nums []int) {
-	start, end := 0, len(nums)-1
-	if start >= end {
+//func QuickSort(nums []int) {
+//	start, end := 0, len(nums)-1
+//	if start >= end {
+//		return
+//	}
+//	quickSortHelper(nums, start, end)
+//}
+//
+//func partition(nums []int, left, right int) int {
+//	if len(nums) < 2 {
+//		return right
+//	}
+//	pivot := nums[right]
+//	i := left
+//	for j := left; j < right; j++ {
+//		if nums[j] < pivot {
+//			nums[i], nums[j] = nums[j], nums[i]
+//			i++
+//		}
+//	}
+//	nums[i], nums[right] = nums[right], nums[i]
+//	return i
+//}
+//
+//func quickSortHelper(nums []int, left, right int) {
+//	if left >= right {
+//		return
+//	}
+//	pivotIndex := partition(nums, left, right)
+//	quickSortHelper(nums, left, pivotIndex-1)
+//	quickSortHelper(nums, pivotIndex+1, right)
+//}
+
+func QuickSort(arr []int) {
+	if len(arr) < 2 {
 		return
 	}
-	quickSortHelper(nums, start, end)
+	quickSort(arr, 0, len(arr)-1)
 }
 
-func partition(nums []int, left, right int) int {
-	if len(nums) < 2 {
+func partition(arr []int, left, right int) int {
+	if len(arr) < 2 {
 		return right
 	}
-	pivot := nums[right]
+	pivot := arr[right] // 参考
 	i := left
 	for j := left; j < right; j++ {
-		if nums[j] < pivot {
-			nums[i], nums[j] = nums[j], nums[i]
+		// 比参考小
+		if arr[j] < pivot {
+			// 左移
+			arr[i], arr[j] = arr[j], arr[i]
 			i++
 		}
 	}
-	nums[i], nums[right] = nums[right], nums[i]
+	// i 左边的都比pivot小，i 右边的逗比pivote大
+	// i 和 right调换就行
+	arr[i], arr[right] = arr[right], arr[i]
 	return i
 }
 
-func quickSortHelper(nums []int, left, right int) {
+func quickSort(arr []int, left int, right int) {
 	if left >= right {
 		return
 	}
-	pivotIndex := partition(nums, left, right)
-	quickSortHelper(nums, left, pivotIndex-1)
-	quickSortHelper(nums, pivotIndex+1, right)
+	pivoteIndex := partition(arr, left, right)
+	quickSort(arr, left, pivoteIndex-1)
+	quickSort(arr, pivoteIndex+1, right)
 }
