@@ -3,9 +3,15 @@ package medium
 import "math"
 
 func MaxProfit(prices []int) int {
-	var ans = 0
+	ans, preMin := 0, prices[0]
 	for i := 1; i < len(prices); i++ {
-		ans += max(0, prices[i]-prices[i-1])
+		if prices[i] < preMin {
+			preMin = prices[i]
+		} else {
+			if prices[i]-preMin > ans {
+				ans = prices[i] - preMin
+			}
+		}
 	}
 	return ans
 }

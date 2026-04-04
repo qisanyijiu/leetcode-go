@@ -4,7 +4,7 @@ import "testing"
 
 func TestMyAtoi2(t *testing.T) {
 	type Item struct {
-		Input string
+		Input  string
 		Except int
 	}
 	cases := []Item{
@@ -26,15 +26,15 @@ func TestMyAtoi2(t *testing.T) {
 		},
 		{
 			Input:  "-91283472332",
-			Except:  -2147483648,
+			Except: -2147483648,
 		},
 		{
 			Input:  "+1",
-			Except:  1,
+			Except: 1,
 		},
 	}
-	for _, item := range cases{
-		out := MyAtoi(item.Input)
+	for _, item := range cases {
+		out := myAtoi(item.Input)
 		if out != item.Except {
 			t.Errorf("input: %s, except: %d, got: %d", item.Input, item.Except, out)
 		}
