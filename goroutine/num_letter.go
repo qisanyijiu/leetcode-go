@@ -10,7 +10,6 @@ func PrintNumOrLetter() {
 	numberCh := make(chan bool)
 	letterCh := make(chan bool)
 	var wg sync.WaitGroup
-	wg.Add(2)
 	go func() {
 		wg.Add(1)
 		defer wg.Done()

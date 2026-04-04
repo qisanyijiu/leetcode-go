@@ -1,5 +1,7 @@
 package medium
 
+import "math"
+
 func MinPathSum(grid [][]int) int {
 	row := len(grid)
 	col := len(grid[0])
@@ -19,9 +21,12 @@ func MinPathSum(grid [][]int) int {
 	return grid[row-1][col-1]
 }
 
-func min(a, b int) int {
-	if a < b {
-		return a
+func min(arr ...int) int {
+	cur := math.MaxInt64
+	for i := 0; i < len(arr); i++ {
+		if cur > arr[i] {
+			cur = arr[i]
+		}
 	}
-	return b
+	return cur
 }
