@@ -1,7 +1,7 @@
 package medium
 
 func letterCombinations(digits string) []string {
-	ans := make([]string, 0)
+	var ans = make([]string, 0)
 	dfsLetter(0, []byte(digits), "", &ans)
 	return ans
 }
@@ -21,10 +21,8 @@ func dfsLetter(depth int, data []byte, pre string, ans *[]string) {
 		'8': []byte{'t', 'u', 'v'},
 		'9': []byte{'w', 'x', 'y', 'z'},
 	}
-	for i := depth; i < len(data); i++ {
-		current := n2l[data[i]]
-		for _, ch := range current {
-			dfsLetter(depth+1, data, pre+string(ch), ans)
-		}
+	letters := n2l[data[depth]]
+	for _, letter := range letters {
+		dfsLetter(depth+1, data, pre+string(letter), ans)
 	}
 }

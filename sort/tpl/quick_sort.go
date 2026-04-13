@@ -54,18 +54,14 @@ func partition(arr []int, left, right int) int {
 	if len(arr) < 2 {
 		return right
 	}
-	pivot := arr[right] // 参考
+	pivot := arr[right]
 	i := left
 	for j := left; j < right; j++ {
-		// 比参考小
 		if arr[j] < pivot {
-			// 左移
 			arr[i], arr[j] = arr[j], arr[i]
 			i++
 		}
 	}
-	// i 左边的都比pivot小，i 右边的逗比pivote大
-	// i 和 right调换就行
 	arr[i], arr[right] = arr[right], arr[i]
 	return i
 }
@@ -74,7 +70,7 @@ func quickSort(arr []int, left int, right int) {
 	if left >= right {
 		return
 	}
-	pivoteIndex := partition(arr, left, right)
-	quickSort(arr, left, pivoteIndex-1)
-	quickSort(arr, pivoteIndex+1, right)
+	pivotIndex := partition(arr, left, right)
+	quickSort(arr, left, pivotIndex-1)
+	quickSort(arr, pivotIndex+1, right)
 }
